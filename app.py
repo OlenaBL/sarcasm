@@ -33,7 +33,7 @@ def predict():
 		data = [message]
 		vectorizer = vectorizer.transform(data).toarray()
 		my_prediction = classifier.predict(vectorizer)
-	return render_template('result.html',prediction = my_prediction)
+	return render_template('answer.html',prediction = my_prediction)
 
 if __name__ == '__main__':
 	app.run(debug=True)
