@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Prediction</title>
+	<style>
+        h3 {
+            color:gray;
+            font-size: 2em;
+            text-align: center;
+            padding-top: 10%;
+        }
+    </style>
+</head>
+<body>
+<div class="results"><h3>It looks like your text is</h3>
+    <div class="results">
+        
+        {% if prediction == 1%}
+        <h2>quite sarcastic</h2>
+        {% elif prediction == 0%}
+        <h2>not sarcastic</h2>
+        {% endif %}
+    
+        </div>
+</div>
+</body>
+</html>
