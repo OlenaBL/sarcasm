@@ -4,3 +4,5 @@ numpy
 gunicorn
 sklearn
 naive-bayes
+nltk
+svm
