@@ -31,15 +31,26 @@ def predict():
 	data = data_merged.append(data2)
 	
 	#Data preprocessing
-	import nltk
-	from nltk.stem.porter import PorterStemmer
-	from nltk import word_tokenize, WordNetLemmatizer
-	from nltk.corpus import stopwords
-	nltk.download('stopwords')
-	nltk.download('wordnet')
-	nltk.download('punkt')
+	#import nltk
+	#from nltk.stem.porter import PorterStemmer
+	#from nltk import word_tokenize, WordNetLemmatizer
+	#from nltk.corpus import stopwords
+	#nltk.download('stopwords')
+	#nltk.download('wordnet')
+	#nltk.download('punkt')
 	lemmatizer = WordNetLemmatizer()
 	stemmer = PorterStemmer()
+	
+def cleaning(sentence):
+	text = re.sub('[^a-zA-Z]', " ", sentence) #removing non a-z characters
+	text = text.lower()
+	text = word_tokenize(text, language='english') #tokenizing
+	text = [lemmatizer.lemmatize(word) for word in text if(word) not in stop] #lemmatizing words and removing stopwords
+	text = " ".join(text) #words back in strings
+	return text
+	
+	#Defining variables X and y
+	data['headline'] = data['headline'].apply(cleaning)
 	
 	#Removing stopwords, except useful for our research.
 	stop = set(stopwords.words('english')) - set(['not', 'no', 'nor', "don't", 'very', 'down', 'most', 'over', 'such'])
