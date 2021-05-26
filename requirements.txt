@@ -5,6 +5,5 @@ gunicorn
 sklearn
 naive-bayes
 nltk
-nltk.download('stopwords')
 svm
 wordnet
