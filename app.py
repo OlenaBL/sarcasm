@@ -13,7 +13,7 @@ def home():
 
 @app.route('/',methods=['POST'])
 def predict():
-	data = pd.read_json('https://res.cloudinary.com/olena/raw/upload/v1621887358/Sarcasm_Headlines_Dataset.json', lines=True)
+	data0 = pd.read_json('https://res.cloudinary.com/olena/raw/upload/v1621887358/Sarcasm_Headlines_Dataset.json', lines=True)
 
 	#Second dataset
 	data1 = pd.read_csv('https://raw.githubusercontent.com/OlenaBL/sarcasm/main/GEN-sarc-notsarc.csv')
