@@ -30,9 +30,6 @@ def predict():
 	data_merged = data0.append(data1)
 	data = data_merged.append(data2)
 	
-	#Defining variables X and y
-	#data['headline'] = data['headline'].apply(cleaning)
-	
 	#Removing stopwords, except useful for our research.
 	stop = set(stopwords.words('english')) - set(['not', 'no', 'nor', "don't", 'very', 'down', 'most', 'over', 'such'])
 	
@@ -41,7 +38,7 @@ def predict():
 	vectorizer = TfidfVectorizer(use_idf=True, lowercase=True, strip_accents='ascii', stop_words=stop)
 	
 	y = data['is_sarcastic']
-	X = data['headline']
+	#X = data['headline']
 	X = vectorizer.fit_transform(data['headline'])
 	
 	from sklearn.model_selection import train_test_split
