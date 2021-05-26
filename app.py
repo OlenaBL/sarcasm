@@ -15,19 +15,64 @@ def home():
 def predict():
 	data = pd.read_json('https://res.cloudinary.com/olena/raw/upload/v1621887358/Sarcasm_Headlines_Dataset.json', lines=True)
 
-	from sklearn.feature_extraction.text import TfidfVectorizer#stop = set(stopwords.words('english')) - set(['not', 'no', 'nor', "don't", 'very', 'down', 'most', 'over', 'such'])
-	vectorizer = TfidfVectorizer(use_idf=True, lowercase=True, strip_accents='ascii')
+	#Second dataset
+	data1 = pd.read_csv('https://raw.githubusercontent.com/OlenaBL/sarcasm/main/GEN-sarc-notsarc.csv')
+	data1['class'] = data1['class'].replace({'notsarc':0, 'sarc':1})
+	data1.rename(columns={'text': 'headline', 'class': 'is_sarcastic'}, inplace=True)
+	
+	#Third dataset
+	data2 = pd.read_csv('https://raw.githubusercontent.com/OlenaBL/sarcasm/main/HYP-sarc-notsarc.csv')
+	data2['class'] = data2['class'].replace({'notsarc':0, 'sarc':1})
+	data2.rename(columns={'text': 'headline', 'class': 'is_sarcastic'}, inplace=True)
+	
+	#Appanding datasets
+	data_merged = data0.append(data1)
+	data = data_merged.append(data2)
+	
+	#Data preprocessing
+	from nltk.stem.porter import PorterStemmer
+	from nltk import word_tokenize, WordNetLemmatizer
+	from nltk.corpus import stopwords
+	nltk.download('stopwords')
+	nltk.download('wordnet')
+	nltk.download('punkt')
+	lemmatizer = WordNetLemmatizer()
+	stemmer = PorterStemmer()
+	#Removing stopwords, except useful for our research.
+	
+	stop = set(stopwords.words('english')) - set(['not', 'no', 'nor', "don't", 'very', 'down', 'most', 'over', 'such'])
+	
+	#Applying vectorizer
+	from sklearn.feature_extraction.text import TfidfVectorizer
+	vectorizer = TfidfVectorizer(use_idf=True, lowercase=True, strip_accents='ascii', stop_words=stop)
+	
+	def cleaning(sentence)
+		text = re.sub('[^a-zA-Z]', " ", sentence) #removing non a-z characters
+	  	text1 = re.compile('<.*?>')
+	  	text2 = re.sub(text1, '', sentence)
+	  	text3 = re.sub(r'http\S+', '',text2)
+	  	text4 = re.sub('[0-9]+', '', text3)
+	  	print(sentence)
+	  	text = text.lower()
+	  	text = word_tokenize(text, language='english') #tokenizing
+	  	text = [lemmatizer.lemmatize(word) for word in text if(word) not in stop] #lemmatizing words and removing stopwords
+	  	text = " ".join(text) #words back in strings
+	  	print(text, '\n') #printing clean text
+	  	return text
+	
+	#Defining variables X and y
+	X = data['headline']
+	X.apply(cleaning)
 	y = data['is_sarcastic']
-	X = vectorizer.fit_transform(data['headline'])
 	
 	from sklearn.model_selection import train_test_split
-	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.10, random_state=42)
 	
-	from sklearn.naive_bayes import MultinomialNB
-	classifier = MultinomialNB()
+	from sklearn.svm import LinearSVC
+	classifier = LinearSVC(dual=False, verbose=0)
 	classifier.fit(X_train, y_train)
-	classifier.score(X_test,y_test)
-
+	score = classifier.score(X_train, y_train)
+	
 	if request.method == 'POST':
 		message = request.form['headline']
 		data = [message]
