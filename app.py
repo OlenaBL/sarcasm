@@ -38,14 +38,14 @@ def predict():
 	#nltk.download('stopwords')
 	#nltk.download('wordnet')
 	#nltk.download('punkt')
-	lemmatizer = WordNetLemmatizer()
-	stemmer = PorterStemmer()
+	#lemmatizer = WordNetLemmatizer()
+	#stemmer = PorterStemmer()
 	
 def cleaning(sentence):
 	text = re.sub('[^a-zA-Z]', " ", sentence) #removing non a-z characters
 	text = text.lower()
 	text = word_tokenize(text, language='english') #tokenizing
-	text = [lemmatizer.lemmatize(word) for word in text if(word) not in stop] #lemmatizing words and removing stopwords
+	#text = [lemmatizer.lemmatize(word) for word in text if(word) not in stop] #lemmatizing words and removing stopwords
 	text = " ".join(text) #words back in strings
 	return text
 	
