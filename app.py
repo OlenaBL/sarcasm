@@ -71,12 +71,12 @@ def cleaning(sentence):
 	classifier.fit(X_train, y_train)
 	score = classifier.score(X_train, y_train)
 	
-	if request.method == 'POST':
-		message = request.form['headline']
-		data = [message]
-		vectorizer = classifier.transform(data).toarray()
-		my_prediction = classifier.predict(vectorizer)
-	return render_template('answer.html',prediction = my_prediction)
+if request.method == 'POST':
+	message = request.form['headline']
+	data = [message]
+	vectorizer = vectorizer.transform(data).toarray()
+	my_prediction = classifier.predict(vectorizer)
+return render_template('answer.html',prediction = my_prediction)
 
 if __name__ == '__main__':
 	app.run(debug=True)
