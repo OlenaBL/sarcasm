@@ -61,6 +61,7 @@ def cleaning(sentence):
 	#X.apply(cleaning)
 	
 	y = data['is_sarcastic']
+	X = data['headline']
 	X = vectorizer.fit_transform(data['headline'])
 	
 	from sklearn.model_selection import train_test_split
