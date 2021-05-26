@@ -24,7 +24,7 @@ def predict():
 	data2['class'] = data2['class'].replace({'notsarc':0, 'sarc':1})
 	data2.rename(columns={'text': 'headline', 'class': 'is_sarcastic'}, inplace=True)
 	
-	#Appanding datasets
+	#Appending datasets
 	data_merged = data0.append(data1)
 	data = data_merged.append(data2)
 	
@@ -33,10 +33,9 @@ def predict():
 	
 	#Applying vectorizer
 	from sklearn.feature_extraction.text import TfidfVectorizer
-	vectorizer = TfidfVectorizer(use_idf=True, lowercase=True, strip_accents='ascii') #stop_words=stop)
+	vectorizer = TfidfVectorizer(use_idf=True, lowercase=True, strip_accents='ascii')
 	
 	y = data['is_sarcastic']
-	#X = data['headline']
 	X = vectorizer.fit_transform(data['headline'])
 	
 	from sklearn.model_selection import train_test_split
