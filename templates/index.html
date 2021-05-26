@@ -39,14 +39,20 @@
             height: 25%;
             width: 30%;
             border-radius: 1em;
-        }
+	    }
+	textarea {
+	    font-family:Chalkduster, fantasy;
+  	    font-size: 14px;
+	    color: gray;
+            white-space:pre-wrap;
+	    }
         </style>
 </head>
 <body>
 <h2>Here you can predict if your text sounds sarcastic or not.</h2>
 <form action="{{ url_for('predict')}}" method="POST">
 <!--<input type="text" name="text"/>-->
-<textarea name="headline" rows="10" cols="50" id="box" style="font-family:Chalkduster, fantasy;color:#003399;white-space:pre-wrap></textarea>
+<textarea name="headline" rows="10" cols="50" id="box"></textarea>
 <br/>
 <br>
 <input type="submit" class="button" value="Prediction">
