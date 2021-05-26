@@ -46,7 +46,7 @@ def cleaning(sentence):
 	text = text.lower()
 	text = word_tokenize(text, language='english') #tokenizing
 	#text = [lemmatizer.lemmatize(word) for word in text if(word) not in stop] #lemmatizing words and removing stopwords
-	text = " ".join(text) #words back in strings
+	#text = " ".join(text) #words back in strings
 	return text
 	
 	#Defining variables X and y
