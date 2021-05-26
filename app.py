@@ -4,14 +4,15 @@ import pickle
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
-
 app = Flask(__name__)
 
 @app.route('/')
+
 def home():
 	return render_template('index.html')
 
 @app.route('/',methods=['POST'])
+
 def predict():
 	data0 = pd.read_json('https://res.cloudinary.com/olena/raw/upload/v1621887358/Sarcasm_Headlines_Dataset.json', lines=True)
 
@@ -47,19 +48,6 @@ def predict():
 	from sklearn.feature_extraction.text import TfidfVectorizer
 	vectorizer = TfidfVectorizer(use_idf=True, lowercase=True, strip_accents='ascii', stop_words=stop)
 	
-def cleaning(sentence):
-	text = re.sub('[^a-zA-Z]', " ", sentence) #removing non a-z characters
-	text = text.lower()
-	text = word_tokenize(text, language='english') #tokenizing
-	text = [lemmatizer.lemmatize(word) for word in text if(word) not in stop] #lemmatizing words and removing stopwords
-	text = " ".join(text) #words back in strings
-	return text
-	
-	#Defining variables X and y
-	data['headline'] = data['headline'].apply(cleaning)
-	#X = data['headline']
-	#X.apply(cleaning)
-	
 	y = data['is_sarcastic']
 	X = data['headline']
 	X = vectorizer.fit_transform(data['headline'])
@@ -70,7 +58,7 @@ def cleaning(sentence):
 	from sklearn.svm import LinearSVC
 	classifier = LinearSVC(dual=False, verbose=0)
 	classifier.fit(X_train, y_train)
-	score = classifier.score(X_train, y_train)
+	classifier.score(X_train, y_train)
 	
 	if request.method == 'POST':
 		message = request.form['headline']
