@@ -30,6 +30,7 @@ def predict():
 	data = data_merged.append(data2)
 	
 	#Data preprocessing
+	import nltk
 	from nltk.stem.porter import PorterStemmer
 	from nltk import word_tokenize, WordNetLemmatizer
 	from nltk.corpus import stopwords
