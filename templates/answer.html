@@ -38,12 +38,12 @@
 <div class="results"><h3>It looks like your text is</h3>
     <div class="results">
         {% if prediction == 1%}
-        <h2>quite sarcastic</h2>
+        <h2>sarcastic</h2>
         {% elif prediction == 0%}
         <h2>not sarcastic</h2>
         {% endif %}
     </div>
 </div>
-	<a href='index.html'><button id="try">Try something else</button></a>
+	<input type="button" value="Try something else" id="try" onclick="window.location.href='index.html'">
 </body>
 </html>
