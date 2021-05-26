@@ -3,8 +3,6 @@ import pandas as pd
 import pickle
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
-import nltk
-nltk.download('stopwords')
 
 app = Flask(__name__)
 
@@ -33,7 +31,7 @@ def predict():
 	data = data_merged.append(data2)
 	
 	#Removing stopwords, except useful for our research.
-	stop = set(stopwords.words('english')) - set(['not', 'no', 'nor', "don't", 'very', 'down', 'most', 'over', 'such'])
+	#stop = set(stopwords.words('english')) - set(['not', 'no', 'nor', "don't", 'very', 'down', 'most', 'over', 'such'])
 	
 	#Applying vectorizer
 	from sklearn.feature_extraction.text import TfidfVectorizer
