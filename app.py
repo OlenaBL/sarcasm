@@ -46,13 +46,13 @@ def predict():
 	from sklearn.feature_extraction.text import TfidfVectorizer
 	vectorizer = TfidfVectorizer(use_idf=True, lowercase=True, strip_accents='ascii', stop_words=stop)
 	
-	def cleaning(sentence):
-		text = re.sub('[^a-zA-Z]', " ", sentence) #removing non a-z characters
-	  	text = text.lower()
-	  	text = word_tokenize(text, language='english') #tokenizing
-	  	text = [lemmatizer.lemmatize(word) for word in text if(word) not in stop] #lemmatizing words and removing stopwords
-	  	text = " ".join(text) #words back in strings
-	  	return text
+def cleaning(sentence):
+	text = re.sub('[^a-zA-Z]', " ", sentence) #removing non a-z characters
+	text = text.lower()
+	text = word_tokenize(text, language='english') #tokenizing
+	text = [lemmatizer.lemmatize(word) for word in text if(word) not in stop] #lemmatizing words and removing stopwords
+	text = " ".join(text) #words back in strings
+	return text
 	
 	#Defining variables X and y
 	X = data['headline']
