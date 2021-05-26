@@ -31,14 +31,14 @@ def predict():
 	
 	#Data preprocessing
 	import nltk
-	from nltk.stem.porter import PorterStemmer
+	#from nltk.stem.porter import PorterStemmer
 	from nltk import word_tokenize, WordNetLemmatizer
 	from nltk.corpus import stopwords
 	nltk.download('stopwords')
 	nltk.download('wordnet')
 	nltk.download('punkt')
 	lemmatizer = WordNetLemmatizer()
-	stemmer = PorterStemmer()
+	#stemmer = PorterStemmer()
 	#Removing stopwords, except useful for our research.
 	
 	stop = set(stopwords.words('english')) - set(['not', 'no', 'nor', "don't", 'very', 'down', 'most', 'over', 'such'])
