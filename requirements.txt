@@ -8,3 +8,4 @@ nltk
 svm
 WordNetLemmatizer
 PorterStemmer
+WordNetLemmatizer
