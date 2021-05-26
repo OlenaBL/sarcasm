@@ -31,8 +31,6 @@ def predict():
 	data = data_merged.append(data2)
 	
 	#Removing stopwords, except useful for our research.
-	from nltk.corpus import stopwords
-	nltk.download('stopwords')
 	stop = set(stopwords.words('english')) - set(['not', 'no', 'nor', "don't", 'very', 'down', 'most', 'over', 'such'])
 	
 	#Applying vectorizer
