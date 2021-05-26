@@ -46,7 +46,7 @@ def predict():
 	from sklearn.feature_extraction.text import TfidfVectorizer
 	vectorizer = TfidfVectorizer(use_idf=True, lowercase=True, strip_accents='ascii', stop_words=stop)
 	
-	def cleaning(sentence)
+	def cleaning(sentence):
 		text = re.sub('[^a-zA-Z]', " ", sentence) #removing non a-z characters
 	  	text1 = re.compile('<.*?>')
 	  	text2 = re.sub(text1, '', sentence)
