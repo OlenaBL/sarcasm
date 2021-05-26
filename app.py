@@ -56,8 +56,9 @@ def cleaning(sentence):
 	return text
 	
 	#Defining variables X and y
-	X = data['headline']
-	X.apply(cleaning)
+	data['headline'] = data['headline'].apply(cleaning)
+	#X = data['headline']
+	#X.apply(cleaning)
 	
 	y = data['is_sarcastic']
 	X = vectorizer.fit_transform(data['headline'])
@@ -73,7 +74,7 @@ def cleaning(sentence):
 	if request.method == 'POST':
 		message = request.form['headline']
 		data = [message]
-		vectorizer = vectorizer.transform(data).toarray()
+		vectorizer = classifier.transform(data).toarray()
 		my_prediction = classifier.predict(vectorizer)
 	return render_template('answer.html',prediction = my_prediction)
 
