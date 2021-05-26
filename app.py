@@ -48,10 +48,10 @@ def predict():
 	
 	def cleaning(sentence):
 		text = re.sub('[^a-zA-Z]', " ", sentence) #removing non a-z characters
-	  	text1 = re.compile('<.*?>')
-	  	text2 = re.sub(text1, '', sentence)
-	  	text3 = re.sub(r'http\S+', '',text2)
-	  	text4 = re.sub('[0-9]+', '', text3)
+	  	#text1 = re.compile('<.*?>')
+	  	#text2 = re.sub(text1, '', sentence)
+	  	#text3 = re.sub(r'http\S+', '',text2)
+	  	#text4 = re.sub('[0-9]+', '', text3)
 	  	print(sentence)
 	  	text = text.lower()
 	  	text = word_tokenize(text, language='english') #tokenizing
