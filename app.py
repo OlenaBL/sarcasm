@@ -48,16 +48,10 @@ def predict():
 	
 	def cleaning(sentence):
 		text = re.sub('[^a-zA-Z]', " ", sentence) #removing non a-z characters
-	  	#text1 = re.compile('<.*?>')
-	  	#text2 = re.sub(text1, '', sentence)
-	  	#text3 = re.sub(r'http\S+', '',text2)
-	  	#text4 = re.sub('[0-9]+', '', text3)
-	  	print(sentence)
 	  	text = text.lower()
 	  	text = word_tokenize(text, language='english') #tokenizing
 	  	text = [lemmatizer.lemmatize(word) for word in text if(word) not in stop] #lemmatizing words and removing stopwords
 	  	text = " ".join(text) #words back in strings
-	  	print(text, '\n') #printing clean text
 	  	return text
 	
 	#Defining variables X and y
