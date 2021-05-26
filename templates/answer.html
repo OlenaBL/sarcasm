@@ -7,22 +7,43 @@
             color:gray;
             font-size: 2em;
             text-align: center;
-            padding-top: 10%;
+        }
+	.button {
+            color: gray;
+            cursor: pointer;
+            font-weight: bold;            
+            font-size: 2em;
+            height: auto;
+            width: auto;
+            background-color: whitesmoke;
+            display: block;
+            margin : 0 auto;
+            border-radius: 1em;
+            padding: 20px;
+        }
+        .button:hover {
+            color:whitesmoke;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 2em;
+            height: auto;
+            width: auto;
+            background-color: gray;            
+            display: block;
+            margin : 0 auto;
         }
     </style>
 </head>
 <body>
 <div class="results"><h3>It looks like your text is</h3>
     <div class="results">
-        
         {% if prediction == 1%}
         <h2>quite sarcastic</h2>
         {% elif prediction == 0%}
         <h2>not sarcastic</h2>
         {% endif %}
-    
-        </div>
+    </div>
 </div>
-	<a href='index.html'><button>Try something else</button></a>
+	<a href='/index.html'><button>Try something else</button></a>
 </body>
 </html>
