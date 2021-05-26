@@ -33,7 +33,7 @@ def predict():
 	
 	#Applying vectorizer
 	from sklearn.feature_extraction.text import TfidfVectorizer
-	vectorizer = TfidfVectorizer(use_idf=True, lowercase=True, strip_accents='ascii' #stop_words=stop)
+	vectorizer = TfidfVectorizer(use_idf=True, lowercase=True, strip_accents='ascii') #stop_words=stop)
 	
 	y = data['is_sarcastic']
 	#X = data['headline']
