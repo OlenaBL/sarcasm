@@ -6,3 +6,5 @@ sklearn
 naive-bayes
 nltk
 svm
+WordNetLemmatizer
+PorterStemmer
